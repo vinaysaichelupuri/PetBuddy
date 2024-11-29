@@ -61,7 +61,7 @@ export function Register({ navigation }: { navigation: any }) {
     <View style={styles.mainContainer}>
       <Header />
       <TouchableOpacity style={styles.imageContainer} onPress={handleOpenGallery}>
-        <Image source={normalImage} style={styles.image} testID='image' />
+        <Image source={normalImage} style={styles.image} testID='photo' />
       </TouchableOpacity>
       <View style={styles.inputContainer}>
         <TextInput

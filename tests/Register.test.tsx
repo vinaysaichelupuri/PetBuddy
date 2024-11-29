@@ -75,7 +75,7 @@ describe('Register Component', () => {
   
     expect(getByTestId('username')).toBeTruthy();
     expect(getByTestId('password')).toBeTruthy();
-    expect(getByTestId('image')).toBeTruthy();
+    expect(getByTestId('photo')).toBeTruthy();
     expect(getByTestId('confirmPassword')).toBeTruthy();
     expect(getByTestId('number')).toBeTruthy();
     expect(getByTestId('email')).toBeTruthy();
@@ -165,7 +165,7 @@ describe('Register Component', () => {
         <Register navigation={mockNavigation} />
     </NavigationContainer>,
   );
-    fireEvent.press(getByTestId("image"));
+    fireEvent.press(getByTestId("photo"));
     await waitFor(() => {
       expect(Alert.alert).toHaveBeenCalledWith(
         'Permission Denied',
@@ -178,7 +178,7 @@ describe('Register Component', () => {
 
     const { getByTestId } = render(<Register navigation={{ navigate: jest.fn() }} />);
     
-    fireEvent.press(getByTestId('image')); 
+    fireEvent.press(getByTestId('photo')); 
     
     await waitFor(() => expect(ImageCropPicker.openPicker).toHaveBeenCalled());
   });
@@ -189,7 +189,7 @@ describe('Register Component', () => {
 
     const { getByTestId } = render(<Register navigation={{ navigate: jest.fn() }} />);
     
-    fireEvent.press(getByTestId('image')); 
+    fireEvent.press(getByTestId('photo')); 
     
     await waitFor(() => expect(ImageCropPicker.openPicker).toHaveBeenCalled());
   });
