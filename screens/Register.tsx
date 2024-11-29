@@ -9,7 +9,7 @@ import axios from 'axios';
 export function Register({ navigation }: { navigation: any }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const[confirmPassword,setConfirmPassword] = useState('')
+  const[confirmPassword] = useState('')
   const [email, setEmail] = useState('');
   const [number, setNumber] = useState('');
   const [image, setImage] = useState('');
