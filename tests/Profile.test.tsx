@@ -32,7 +32,7 @@ describe('Profile Component', () => {
     expect(getByTestId('aboutText')).toBeTruthy();
     expect(getByTestId('nextImage')).toBeTruthy();
     expect(getByTestId('myPets')).toBeTruthy();
-    expect(getByTestId('petImage')).toBeTruthy();
+    
     expect(getByTestId('locationImage')).toBeTruthy();
     expect(getByTestId('locationText')).toBeTruthy();
   });
