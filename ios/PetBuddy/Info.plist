@@ -48,5 +48,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	 <key>NSCameraUsageDescription</key>
+  <string>PetBuddy needs camera permission</string>
+   <key>NSPhotoLibraryUsageDescription</key>
+  <string>PetBuddy needs files</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>PetBuddy needs files</string>
 </dict>
 </plist>
