@@ -66,7 +66,7 @@ React Native Testing Library: For robust component testing.
 
 1.⁠ ⁠Clone the repository:
 ```
-git clone https://github.com/vinaysaichelupuri/PetBuddy.git
+git clone https://github.com/vinaysaichelupuri/PetBuddy/tree/pet-buddy-part1
 ```
 
 
