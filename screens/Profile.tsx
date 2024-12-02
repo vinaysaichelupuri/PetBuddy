@@ -13,7 +13,8 @@ useEffect(()=>{
         const response = await axios.post('http://localhost:5001/api/getProfile',{
             username:username,
           })
-          setProfileData(response.data)
+          const profileData  = response.data
+          setProfileData(profileData)
           
     }
     getData()

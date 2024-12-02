@@ -3,18 +3,24 @@ import {render, fireEvent} from '@testing-library/react-native';
 import {Profile} from '../screens/Profile';
 import {NavigationContainer} from '@react-navigation/native';
 import {useGlobalContext} from '../context/GlobalContext';
+import axios from 'axios';
 jest.mock('../context/GlobalContext', () => ({
   useGlobalContext: jest.fn(),
 }));
+
+jest.mock('axios');
+
 describe('Profile Component', () => {
   beforeEach(() => {
     (useGlobalContext as jest.Mock).mockReturnValue({
       username: 'testuser',
     });
   });
+  
   const mockNavigation = {navigate: jest.fn(), replace: jest.fn()};
 
   it('renders correctly', () => {
+    (axios.post as jest.Mock).mockResolvedValue({ data: {username:"vinay",email:"vinaysai02@gmail.com",phoneNumber:'123456789',userPhoto:"gsdg.jpg"} }) 
     const {getByTestId} = render(
       <NavigationContainer>
         <Profile navigation={mockNavigation} />
@@ -38,6 +44,7 @@ describe('Profile Component', () => {
   });
 
   it('navigates to Login screen on button press', () => {
+    (axios.post as jest.Mock).mockResolvedValue({ data: {username:"vinay",email:"vinaysai02@gmail.com",phoneNumber:'123456789',userPhoto:"gsdg.jpg"} }) 
     const {getByTestId} = render(
       <NavigationContainer>
         <Profile navigation={mockNavigation} />
@@ -49,6 +56,7 @@ describe('Profile Component', () => {
     expect(mockNavigation.navigate).toHaveBeenCalledWith('Home');
   });
   it('navigates to Login screen on button press', () => {
+    (axios.post as jest.Mock).mockResolvedValue({ data: {username:"vinay",email:"vinaysai02@gmail.com",phoneNumber:'123456789',userPhoto:"gsdg.jpg"} }) 
     const {getByTestId} = render(
       <NavigationContainer>
         <Profile navigation={mockNavigation} />
@@ -60,6 +68,7 @@ describe('Profile Component', () => {
     expect(mockNavigation.navigate).toHaveBeenCalledWith('AddPet');
   });
   it('navigates to Login screen on button press', () => {
+    (axios.post as jest.Mock).mockResolvedValue({ data: {username:"vinay",email:"vinaysai02@gmail.com",phoneNumber:'123456789',userPhoto:"gsdg.jpg"} }) 
     const {getByTestId} = render(
       <NavigationContainer>
         <Profile navigation={mockNavigation} />
