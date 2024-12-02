@@ -1,0 +1,41 @@
+name: Workflow
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    name: check workflow
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Cocoapods
+        run: sudo gem install cocoapods
+
+      - name: Install Java - 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Install Dependencies
+        run: npm install   
+
+      - name: Install iOS Dependencies  
+        run: |
+          cd ios
+          pod install
+      
+      - name: Run Tests
+        run: npm test
+      
+      - name: Build on Android
+        run: npx react-native build-android
+
+      - name: Build on iOS
+        run: npx react-native build-ios
