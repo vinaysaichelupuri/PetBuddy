@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {Controller, useForm} from 'react-hook-form';
 import notifee, { AndroidImportance, EventType, TriggerType } from '@notifee/react-native';
 import {
   Image,
