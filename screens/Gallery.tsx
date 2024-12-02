@@ -4,7 +4,7 @@ import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {useGlobalContext} from '../context/GlobalContext';
 import { AddGallery } from '../components/AddGallery';
 export function Gallery({navigation}: {navigation: any}) {
-  const {username, petName} = useGlobalContext();
+  const {username, petName,setImage} = useGlobalContext();
   const [data, setData] = useState([]);
   useEffect(() => {
     const getData = async () => {
@@ -19,7 +19,7 @@ export function Gallery({navigation}: {navigation: any}) {
      
     };
     getData();
-  }, []);
+  }, [setImage]);
   return(
     <><ScrollView>
           {data.map((item: any) => (
