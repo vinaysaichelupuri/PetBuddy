@@ -4,6 +4,10 @@ import { Login } from '../screens/Login';
 import { useGlobalContext } from '../context/GlobalContext';
 import axios from 'axios';
 import { Alert } from 'react-native';
+jest.mock('@react-native-async-storage/async-storage', () => ({
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+}));
 
 jest.mock('../context/GlobalContext', () => ({
   useGlobalContext: jest.fn(),
