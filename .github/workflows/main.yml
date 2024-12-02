@@ -3,7 +3,7 @@ name: Workflow
 on: 
   push:
     branches:
-      - main
+      - pet-buddy-part1
 
 jobs:
   build-and-test:
