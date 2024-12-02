@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function Introduction({navigation}:{navigation:any}) {
+  const{setUsername} = useGlobalContext()
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const storedUsername = await AsyncStorage.getItem('username');
+      if (storedUsername) {
+        setUsername(storedUsername)
+        setIsLoggedIn(true);
+        navigation.replace('Home');
+
+      }
+    };
+
+    checkLoginStatus();
+  }, [navigation]);
+
+
   const handleLogin=()=>{
     navigation.replace('Login')
   }
@@ -28,6 +46,7 @@ export function Introduction({navigation}:{navigation:any}) {
 
 
 import { StyleSheet } from 'react-native';
+import { useGlobalContext } from '../context/GlobalContext';
 
 export const styles = StyleSheet.create({
   container: {
