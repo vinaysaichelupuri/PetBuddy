@@ -7,8 +7,7 @@ import axios from 'axios';
 import { useGlobalContext } from '../context/GlobalContext';
 
 export function AddGallery({navigation}: {navigation: any}) {
-    const [image,setImage] = useState('')
-    const {username,petName} = useGlobalContext()
+    const {username,petName,setImage} = useGlobalContext()
     const handleOpenGallery = async () => {
           const hasPermission = await requestPermissions();
           if (hasPermission) {
@@ -26,11 +25,11 @@ export function AddGallery({navigation}: {navigation: any}) {
     
           const source: string = pickedImage.path;
           const base64Image: string = await RNFS.readFile(source, 'base64');
-          setImage(`data:image/jpeg;base64,${base64Image}`);
+          const imageData = `data:image/jpeg;base64,${base64Image}`
           const response = await axios.post('http://localhost:5001/api/addGallery', { 
             username: username,
             petName:petName,
-            path:image
+            path:imageData
           });
       };
   return (
