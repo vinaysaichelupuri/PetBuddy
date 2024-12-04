@@ -5,6 +5,7 @@ import ImageCropPicker from 'react-native-image-crop-picker';
 import RNFS from 'react-native-fs';
 import axios from 'axios';
 import { useGlobalContext } from '../context/GlobalContext';
+import { styles } from '../componentStyling/AddGalleryStyling';
 
 export function AddGallery({navigation}: {navigation: any}) {
     const {username,petName,setImage} = useGlobalContext()
@@ -40,26 +41,3 @@ export function AddGallery({navigation}: {navigation: any}) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    height: 100,
-    width: '100%',
-    justifyContent:"center",
-    alignItems:"center"
-  },
-  subContainer: {
-    height:40,
-    width:"40%",
-    backgroundColor:"forestgreen",
-     justifyContent:"center",
-    alignItems:"center",
-    borderRadius:20
-  },
-  text: {
-    color:"white",
-    fontSize:20,
-    fontFamily:"bold",
-    fontWeight:"600"
-  },
-});

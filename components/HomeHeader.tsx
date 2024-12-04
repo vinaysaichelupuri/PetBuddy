@@ -1,6 +1,7 @@
 import React from 'react'
 import { useGlobalContext } from '../context/GlobalContext'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { styles } from '../componentStyling/HomeHeaderStyling'
 
 export function HomeHeader({navigation}:{navigation:any}) {
     const handleProfile = ()=>{
@@ -18,30 +19,3 @@ export function HomeHeader({navigation}:{navigation:any}) {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-    container:{
-        height:110,
-        width:'100%',
-        display:"flex",
-        flexDirection:"row",
-        backgroundColor:"#32CD32",
-        alignItems:"flex-end",
-        justifyContent:"space-between"
-    },
-    image:{
-        height:50,
-        width:50,
-        marginRight:20,
-        marginBottom:10,
-        borderRadius:10
-    },
-    name:{
-        color:"white",
-        fontSize:18,
-        fontFamily:"bold",
-        marginBottom:30,
-        marginLeft:20,
-        fontWeight:"500"
-    }
-})
