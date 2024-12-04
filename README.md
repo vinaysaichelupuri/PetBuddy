@@ -7,11 +7,14 @@ Designed for pet owners with multiple pets, PetBuddy helps you stay organized wi
 
 ## Table of Contents
 
-1.⁠ Key Features.
-2.⁠ Technology Stack.
-3.⁠ ⁠Setup Guide.
-4.⁠ ⁠Testing the Application.
-5.⁠ ⁠Contact Information.
+1.⁠ [Key Features.](#key-features)
+
+2.⁠ [Technology Stack.](#technology-stack)
+
+3.⁠ [⁠Setup Guide.](#setup-guide)
+
+4.⁠ [⁠Testing the Application.](#testing-the-application)
+
 
 ## Key Features
 
@@ -29,9 +32,6 @@ Designed for pet owners with multiple pets, PetBuddy helps you stay organized wi
 
  Training Resources: Access articles and videos to train your pets effectively.
 
-
-
----
 ## Technology Stack
 
 React Native (TypeScript): Build cross-platform mobile applications.
@@ -43,9 +43,6 @@ Jest: Comprehensive unit testing framework.
 React Native Testing Library: For robust component testing.
 
 
-
----
-
 ## Setup Guide
 
  Requirements
@@ -55,9 +52,14 @@ React Native Testing Library: For robust component testing.
 
 2.⁠ ⁠Platform-specific tools:
 
- Android: Install Android Studio.
+ Android:
+ - Install Android Studio.
+ - Install Java (version < 18.0)
+ - Install Android SDK (version>35.0)
+        
 
- iOS: Install Xcode.
+ iOS: 
+ - Install Xcode.
 
 
 
@@ -115,11 +117,7 @@ cd ..
 npx react-native run-ios
 
 
-
-
----
-
- Testing the Application
+## Testing the Application
 
 Run unit tests using Jest and the React Native Testing Library:
 
