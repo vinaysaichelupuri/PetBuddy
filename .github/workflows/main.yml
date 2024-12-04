@@ -37,3 +37,6 @@ jobs:
       - name: Build on iOS
         run: npx react-native build-ios
         
+      - name: Build on Android
+        run: npx react-native build-android
+        
