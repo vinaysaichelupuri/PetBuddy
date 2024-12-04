@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Image, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { Image, Text, TouchableOpacity, View, StyleSheet, Platform, Linking } from 'react-native';
 import { useGlobalContext } from '../context/GlobalContext';
 import axios from 'axios';
 import { TProfile } from '../types/profileType';
 import { ProfileHeader } from '../components/ProfileHeader';
+import { styles } from '../screenStyling/ProfileStyling';
 
 export function Profile({navigation}:{navigation:any}) {
 const{username} = useGlobalContext()
@@ -19,6 +20,12 @@ useEffect(()=>{
     }
     getData()
 })
+const dialCall = (number:any) => {
+    let phoneNumber = '';
+    if (Platform.OS === 'android') { phoneNumber = `tel:${number}`; }
+    else {phoneNumber = `telprompt:${number}`; }
+    Linking.openURL(phoneNumber);
+ };
     return (
         <><ProfileHeader navigation={navigation} /><View style={styles.container}>
 
@@ -38,10 +45,10 @@ useEffect(()=>{
                     <Image style={styles.icon} source={require('../public/assets/mail.png')}  testID='emailImage'/>
                     <Text style={styles.contactText} testID='emailText'>{profileData.email}</Text>
                 </View>
-                <View style={styles.contactRow}>
+                <TouchableOpacity style={styles.contactRow} onPress={()=>dialCall(profileData.phoneNumber)}>
                     <Image style={styles.icon} source={require('../public/assets/phone-call.png')}  testID='callImage'/>
                     <Text style={styles.contactText} testID='callText'>{profileData.phoneNumber}</Text>
-                </View>
+                </TouchableOpacity>
             </View>
             <View style={styles.menuContainer}>
                 <TouchableOpacity style={styles.menuItem}>
@@ -69,91 +76,3 @@ useEffect(()=>{
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: '#f5f5f5',
-    },
-    header: {
-        alignItems: 'center',
-        backgroundColor: '#4CAF50',
-        borderRadius: 10,
-    },
-    profileImage: {
-        width: "100%",
-        height: 250,
-        marginBottom: 10,
-    },
-    greeting: {
-        fontSize: 18,
-        color: '#fff',
-        fontWeight: 'bold',
-    },
-    infoContainer: {
-        alignItems: 'center',
-        marginVertical: 20,
-        flexDirection:"row",
-        justifyContent:"space-between"
-    },
-    name: {
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-    signOutButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop: 5,
-    },
-    signOutText: {
-        color: '#d9534f',
-        marginLeft: 5,
-    },
-    contactContainer: {
-        padding: 15,
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        marginBottom: 20,
-    },
-    contactRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 5,
-    },
-    icon: {
-        width: 20,
-        height: 20,
-        marginRight: 10,
-    },
-    contactText: {
-        fontSize: 16,
-        color: '#333',
-    },
-    menuContainer: {
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        paddingVertical: 10,
-    },
-    menuItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: 15,
-        paddingHorizontal: 20,
-        borderBottomWidth: 1,
-        borderBottomColor: '#e0e0e0',
-    },
-    menuIcon: {
-        width: 25,
-        height: 25,
-        marginRight: 15,
-    },
-    menuText: {
-        flex: 1,
-        fontSize: 16,
-        color: '#333',
-    },
-    arrowIcon: {
-        width: 15,
-        height: 15,
-    },
-});

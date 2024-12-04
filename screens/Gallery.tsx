@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {useGlobalContext} from '../context/GlobalContext';
 import { AddGallery } from '../components/AddGallery';
+import { styles } from '../screenStyling/GalleryStyling';
 export function Gallery({navigation}: {navigation: any}) {
   const {username, petName,setImage} = useGlobalContext();
   const [data, setData] = useState([]);
@@ -34,19 +35,6 @@ export function Gallery({navigation}: {navigation: any}) {
 
 }
 
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        flexWrap:"wrap",
-    },
-    image:{
-        height:180,
-        width:180,
-        margin:10,
-    },
-
-
-})
 
 
 
