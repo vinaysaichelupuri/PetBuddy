@@ -45,7 +45,7 @@ const dialCall = (number:any) => {
                     <Image style={styles.icon} source={require('../public/assets/mail.png')}  testID='emailImage'/>
                     <Text style={styles.contactText} testID='emailText'>{profileData.email}</Text>
                 </View>
-                <TouchableOpacity style={styles.contactRow} onPress={()=>dialCall(profileData.phoneNumber)}>
+                <TouchableOpacity style={styles.contactRow} onPress={()=>dialCall(profileData.phoneNumber)} testID='callContainer'>
                     <Image style={styles.icon} source={require('../public/assets/phone-call.png')}  testID='callImage'/>
                     <Text style={styles.contactText} testID='callText'>{profileData.phoneNumber}</Text>
                 </TouchableOpacity>

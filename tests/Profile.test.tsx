@@ -3,14 +3,26 @@ import {render, fireEvent} from '@testing-library/react-native';
 import {Profile} from '../screens/Profile';
 import {NavigationContainer} from '@react-navigation/native';
 import {useGlobalContext} from '../context/GlobalContext';
+import { Linking } from 'react-native';
 import axios from 'axios';
 jest.mock('../context/GlobalContext', () => ({
   useGlobalContext: jest.fn(),
 }));
-
 jest.mock('axios');
 
+
+
 describe('Profile Component', () => {
+  jest.mock('react-native', () => {
+    const RN = jest.requireActual('react-native');
+    return {
+      ...RN,
+      Linking: {
+        openURL: jest.fn(),
+      },
+    };
+  });
+
   beforeEach(() => {
     (useGlobalContext as jest.Mock).mockReturnValue({
       username: 'testuser',
@@ -78,5 +90,18 @@ describe('Profile Component', () => {
     fireEvent.press(getByTestId('signOut'));
 
     expect(mockNavigation.navigate).toHaveBeenCalledWith('Login');
+  });
+
+  it('navigates to Login screen on button press', () => {
+    (axios.post as jest.Mock).mockResolvedValue({ data: {username:"vinay",email:"vinaysai02@gmail.com",phoneNumber:'123456789',userPhoto:"gsdg.jpg"} }) 
+    const {getByTestId} = render(
+      <NavigationContainer>
+        <Profile navigation={mockNavigation} />
+      </NavigationContainer>,
+    );
+
+    fireEvent.press(getByTestId('callContainer'));
+
+    expect(Linking.openURL).toHaveBeenCalled();
   });
 });
