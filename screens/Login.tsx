@@ -6,17 +6,19 @@ import { useGlobalContext } from '../context/GlobalContext';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { styles } from '../screenStyling/LoginStyling';
+import { hashPassword } from '../encryption/encryptionFunction';
 
 export function Login({ navigation }: { navigation: any }) {
   const { username, setUsername, password, setPassword } = useGlobalContext();
   const [isLoading, setIsLoading] = useState(false);
+  const encryptedPassword = hashPassword(password)
 
   const handleLogin = async () => {
     setIsLoading(true);
     try {
       const response = await axios.post('http://localhost:5001/api/login', {
         username: username,
-        password: password,
+        password: encryptedPassword,
       });
       setIsLoading(false);
 

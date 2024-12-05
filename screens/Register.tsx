@@ -7,6 +7,8 @@ import ImageCropPicker from 'react-native-image-crop-picker';
 import RNFS from 'react-native-fs';
 import axios from 'axios';
 import { styles } from '../screenStyling/RegisterStyling';
+import { hashPassword } from '../encryption/encryptionFunction';
+
 export function Register({ navigation }: { navigation: any }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -43,9 +45,10 @@ export function Register({ navigation }: { navigation: any }) {
   };
 
   const handleRegiter = async()=>{
+    const encryptedPassword = hashPassword(password)
     const response = await axios.post('http://localhost:5001/api/register',{
       username:username,
-      password:password,
+      password:encryptedPassword,
       userPhoto:image,
       email:email,
       phoneNumber:number
