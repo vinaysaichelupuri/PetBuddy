@@ -46,7 +46,6 @@ export function RemainderModal({ navigation }: { navigation: any }) {
     try{
       setCategoriesIOS()
        const scheduleNotification = async () => {
-        console.log("funtion called")
         const permission = await notifee.requestPermission();
         if (!permission) {
           console.error('Notification permission not granted');
@@ -59,8 +58,6 @@ export function RemainderModal({ navigation }: { navigation: any }) {
         });
       
         const timestamp = new Date(endTime).getTime();
-        console.log(new Date(endTime))
-        console.log('Scheduling notification for:', timestamp);
         
       
         await notifee.createTriggerNotification(
@@ -96,7 +93,6 @@ export function RemainderModal({ navigation }: { navigation: any }) {
       notifee.onForegroundEvent(async ({type, detail}) => {
         const {pressAction } = detail
         if (type === EventType.ACTION_PRESS && pressAction?.id==='yes' ) {
-          console.log('Action function hitted')
           try {
             const response = await axios.post('http://localhost:5001/api/addActivity', {
                 username,
@@ -105,7 +101,6 @@ export function RemainderModal({ navigation }: { navigation: any }) {
                 startTime,
                 endTime,
             });
-            console.log('API response:', response.data);
         } catch (error) {
             console.error('API call error:', error);
         }
