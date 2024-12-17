@@ -117,7 +117,7 @@ describe('Register Component', () => {
 
     fireEvent.press(getByTestId('addpet'));
 
-    await waitFor(() => expect(axios.post).toHaveBeenCalledWith('http://localhost:5001/api/petRegister', expect.any(Object)));
+    await waitFor(() => expect(axios.post).toHaveBeenCalledWith('https://petbuddy-backend-rnu7.onrender.com/api/petRegister', expect.any(Object)));
     expect(mockReplace).toHaveBeenCalledWith('Home');
   });
 

@@ -16,7 +16,7 @@ export function Login({ navigation }: { navigation: any }) {
   const handleLogin = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:5001/api/login', {
+      const response = await axios.post('https://petbuddy-backend-rnu7.onrender.com/api/login', {
         username: username,
         password: encryptedPassword,
       });

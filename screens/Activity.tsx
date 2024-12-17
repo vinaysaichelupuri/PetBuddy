@@ -24,7 +24,7 @@ export function Activity({navigation}: {navigation: any}) {
   useEffect(() => {
     const fetchRemainderData = async () => {
         const response = await axios.post(
-          'http://localhost:5001/api/getActivity',
+          'https://petbuddy-backend-rnu7.onrender.com/api/getActivity',
           {
             username: username,
             petName: petName,

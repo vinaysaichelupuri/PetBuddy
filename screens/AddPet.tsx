@@ -44,7 +44,7 @@ const {username} = useGlobalContext()
   };
 
   const handleRegiter = async()=>{
-    const response = await axios.post('http://localhost:5001/api/petRegister',{
+    const response = await axios.post('https://petbuddy-backend-rnu7.onrender.com/api/petRegister',{
       username:username,
       petName:petName,
       gender:gender,

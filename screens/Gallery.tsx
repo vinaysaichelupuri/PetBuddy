@@ -10,7 +10,7 @@ export function Gallery({navigation}: {navigation: any}) {
   useEffect(() => {
     const getData = async () => {
         const response = await axios.post(
-          'http://localhost:5001/api/getGallery',
+          'https://petbuddy-backend-rnu7.onrender.com/api/getGallery',
           {
             username: username,
             petName: petName,

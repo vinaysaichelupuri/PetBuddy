@@ -14,16 +14,16 @@ export function ServicesTypes() {
 
 useEffect(()=>{
     const getData= async ()=>{
-        const response = await axios.get('http://localhost:5001/api/doctorData')
+        const response = await axios.get('https://petbuddy-backend-rnu7.onrender.com/api/doctorData')
         const details1 = await response.data
         setVeternityData(details1)
-        const response1 = await axios.get('http://localhost:5001/api/groomingData')
+        const response1 = await axios.get('https://petbuddy-backend-rnu7.onrender.com/api/groomingData')
         const details2 = await response1.data
         setGroomingData(details2)
-        const response2 = await axios.get('http://localhost:5001/api/boardingData')
+        const response2 = await axios.get('https://petbuddy-backend-rnu7.onrender.com/api/boardingData')
         const details3 = await response2.data
         setBoardingData(details3)
-        const response3 = await axios.get('http://localhost:5001/api/trainingData')
+        const response3 = await axios.get('https://petbuddy-backend-rnu7.onrender.com/api/trainingData')
         const details4 = response3.data
         setTrainingData(details4)
     }

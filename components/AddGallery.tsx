@@ -27,7 +27,7 @@ export function AddGallery({navigation}: {navigation: any}) {
           const source: string = pickedImage.path;
           const base64Image: string = await RNFS.readFile(source, 'base64');
           const imageData = `data:image/jpeg;base64,${base64Image}`
-          const response = await axios.post('http://localhost:5001/api/addGallery', { 
+          const response = await axios.post('https://petbuddy-backend-rnu7.onrender.com/api/addGallery', { 
             username: username,
             petName:petName,
             path:imageData

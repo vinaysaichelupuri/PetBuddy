@@ -15,7 +15,7 @@ export function HomeCards({navigation}:{navigation:any}) {
 
   useEffect(() => {
     const getData = async () => {
-        const response = await axios.post('http://localhost:5001/api/petData', { 
+        const response = await axios.post('https://petbuddy-backend-rnu7.onrender.com/api/petData', { 
           username: username,
         });
         setPetData(response.data.petData);

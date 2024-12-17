@@ -109,7 +109,7 @@ describe('Register Component', () => {
 
     fireEvent.press(getByText('Submit'));
 
-    await waitFor(() => expect(axios.post).toHaveBeenCalledWith('http://localhost:5001/api/register', expect.any(Object)));
+    await waitFor(() => expect(axios.post).toHaveBeenCalledWith('https://petbuddy-backend-rnu7.onrender.com/api/register', expect.any(Object)));
     expect(mockReplace).toHaveBeenCalledWith('Login');
   });
 

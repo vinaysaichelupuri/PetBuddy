@@ -23,7 +23,7 @@ export function Register({ navigation }: { navigation: any }) {
   };
   const handleOpenGallery = async () => {
       const hasPermission = await requestPermissions();
-      if (hasPermission) {
+      if (!hasPermission) {
         Alert.alert(
           'Permission Denied',
           'We need access to your photos to select an image.'
@@ -46,7 +46,7 @@ export function Register({ navigation }: { navigation: any }) {
 
   const handleRegiter = async()=>{
     const encryptedPassword = hashPassword(password)
-    const response = await axios.post('http://localhost:5001/api/register',{
+    const response = await axios.post('https://petbuddy-backend-rnu7.onrender.com/api/register',{
       username:username,
       password:encryptedPassword,
       userPhoto:image,

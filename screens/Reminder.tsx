@@ -35,7 +35,7 @@ export function Reminder({navigation}: {navigation: any}) {
     const fetchRemainderData = async () => {
       try {
         const response = await axios.post(
-          'http://localhost:5001/api/getReminder',
+          'https://petbuddy-backend-rnu7.onrender.com/api/getReminder',
           {
             username: username,
             petName: petName,

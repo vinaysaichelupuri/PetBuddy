@@ -5,13 +5,14 @@ import axios from 'axios';
 import { TProfile } from '../types/profileType';
 import { ProfileHeader } from '../components/ProfileHeader';
 import { styles } from '../screenStyling/ProfileStyling';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function Profile({navigation}:{navigation:any}) {
-const{username} = useGlobalContext()
+const{username,setUsername} = useGlobalContext()
 const[profileData,setProfileData] = useState<TProfile>({userPhoto:'',email:'',phoneNumber:'',username:'',password:""})
 useEffect(()=>{
     const getData= async ()=>{
-        const response = await axios.post('http://localhost:5001/api/getProfile',{
+        const response = await axios.post('https://petbuddy-backend-rnu7.onrender.com/api/getProfile',{
             username:username,
           })
           const profileData  = response.data
@@ -20,6 +21,13 @@ useEffect(()=>{
     }
     getData()
 })
+    const checkLoginStatus = async () => {
+      const storedUsername = await AsyncStorage.getItem('username');
+      if (storedUsername) {
+        setUsername('')
+      }
+      navigation.navigate('Login')
+    };
 const dialCall = (number:any) => {
     let phoneNumber = '';
     if (Platform.OS === 'android') { phoneNumber = `tel:${number}`; }
@@ -36,7 +44,7 @@ const dialCall = (number:any) => {
             <View style={styles.contactContainer}>
                 <View style={styles.infoContainer}>
                     <Text style={styles.name} testID='name'>{profileData.username}</Text>
-                    <TouchableOpacity style={styles.signOutButton} onPress={()=>{navigation.navigate('Login')}} testID='signOut'>
+                    <TouchableOpacity style={styles.signOutButton} onPress={checkLoginStatus} testID='signOut'>
                         <Image style={styles.icon} source={require('../public/assets/logout-2.png')} testID='signOutImage'/>
                         <Text style={styles.signOutText} testID='signOutText'>Sign out</Text>
                     </TouchableOpacity>
@@ -45,7 +53,7 @@ const dialCall = (number:any) => {
                     <Image style={styles.icon} source={require('../public/assets/mail.png')}  testID='emailImage'/>
                     <Text style={styles.contactText} testID='emailText'>{profileData.email}</Text>
                 </View>
-                <TouchableOpacity style={styles.contactRow} onPress={()=>dialCall(profileData.phoneNumber)} testID='callContainer'>
+                <TouchableOpacity style={styles.contactRow} onPress={()=>dialCall(profileData.phoneNumber)}  testID='callContainer'>
                     <Image style={styles.icon} source={require('../public/assets/phone-call.png')}  testID='callImage'/>
                     <Text style={styles.contactText} testID='callText'>{profileData.phoneNumber}</Text>
                 </TouchableOpacity>

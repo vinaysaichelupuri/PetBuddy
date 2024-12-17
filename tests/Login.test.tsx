@@ -57,7 +57,7 @@ describe('Login Screen', () => {
     fireEvent.press(getByTestId('buttonLogin'));
 
     await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledWith('http://localhost:5001/api/login', {
+      expect(axios.post).toHaveBeenCalledWith('https://petbuddy-backend-rnu7.onrender.com/api/login', {
         username: '',
         password: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
       });
