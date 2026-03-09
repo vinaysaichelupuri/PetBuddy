@@ -4,13 +4,14 @@ import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {useGlobalContext} from '../context/GlobalContext';
 import { AddGallery } from '../components/AddGallery';
 import { styles } from '../screenStyling/GalleryStyling';
+import { API } from '../config/api';
 export function Gallery({navigation}: {navigation: any}) {
   const {username, petName,setImage} = useGlobalContext();
   const [data, setData] = useState([]);
   useEffect(() => {
     const getData = async () => {
         const response = await axios.post(
-          'https://petbuddy-backend-rnu7.onrender.com/api/getGallery',
+          API.getGallery,
           {
             username: username,
             petName: petName,

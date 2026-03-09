@@ -8,6 +8,7 @@ import RNFS from 'react-native-fs';
 import axios from 'axios';
 import { styles } from '../screenStyling/RegisterStyling';
 import { hashPassword } from '../encryption/encryptionFunction';
+import { API } from '../config/api';
 
 export function Register({ navigation }: { navigation: any }) {
   const [username, setUsername] = useState('');
@@ -46,7 +47,7 @@ export function Register({ navigation }: { navigation: any }) {
 
   const handleRegiter = async()=>{
     const encryptedPassword = hashPassword(password)
-    const response = await axios.post('https://petbuddy-backend-rnu7.onrender.com/api/register',{
+    const response = await axios.post(API.register,{
       username:username,
       password:encryptedPassword,
       userPhoto:image,

@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { requestPermissions } from '../permissions/ImagePermission';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import { useGlobalContext } from '../context/GlobalContext';
+import { API } from '../config/api';
 
 jest.mock('axios');
 jest.spyOn(Alert, 'alert');
@@ -117,7 +118,7 @@ describe('Register Component', () => {
 
     fireEvent.press(getByTestId('addpet'));
 
-    await waitFor(() => expect(axios.post).toHaveBeenCalledWith('https://petbuddy-backend-rnu7.onrender.com/api/petRegister', expect.any(Object)));
+    await waitFor(() => expect(axios.post).toHaveBeenCalledWith(API.petRegister, expect.any(Object)));
     expect(mockReplace).toHaveBeenCalledWith('Home');
   });
 

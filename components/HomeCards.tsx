@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useGlobalContext } from '../context/GlobalContext';
 import { styles } from '../componentStyling/HomecardsStyling';
+import { API } from '../config/api';
 
 
 export function HomeCards({navigation}:{navigation:any}) {
@@ -15,7 +16,7 @@ export function HomeCards({navigation}:{navigation:any}) {
 
   useEffect(() => {
     const getData = async () => {
-        const response = await axios.post('https://petbuddy-backend-rnu7.onrender.com/api/petData', { 
+        const response = await axios.post(API.petData, { 
           username: username,
         });
         setPetData(response.data.petData);

@@ -6,6 +6,7 @@ import RNFS from 'react-native-fs';
 import axios from 'axios';
 import { useGlobalContext } from '../context/GlobalContext';
 import { styles } from '../screenStyling/AddPetStyling';
+import { API } from '../config/api';
 export function AddPet({ navigation }: { navigation: any }) {
 const {username} = useGlobalContext()
   const [image, setImage] = useState('');
@@ -44,7 +45,7 @@ const {username} = useGlobalContext()
   };
 
   const handleRegiter = async()=>{
-    const response = await axios.post('https://petbuddy-backend-rnu7.onrender.com/api/petRegister',{
+    const response = await axios.post(API.petRegister,{
       username:username,
       petName:petName,
       gender:gender,

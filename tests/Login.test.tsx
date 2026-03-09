@@ -4,6 +4,7 @@ import { Login } from '../screens/Login';
 import { useGlobalContext } from '../context/GlobalContext';
 import axios from 'axios';
 import { Alert } from 'react-native';
+import { API } from '../config/api';
 jest.mock('@react-native-async-storage/async-storage', () => ({
   getItem: jest.fn(),
   setItem: jest.fn(),
@@ -57,7 +58,7 @@ describe('Login Screen', () => {
     fireEvent.press(getByTestId('buttonLogin'));
 
     await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledWith('https://petbuddy-backend-rnu7.onrender.com/api/login', {
+      expect(axios.post).toHaveBeenCalledWith(API.login, {
         username: '',
         password: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
       });

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { useGlobalContext } from '../context/GlobalContext';
 import { styles } from '../componentStyling/ServiceTypesStyling';
+import { API } from '../config/api';
 
 export function ServicesTypes() {
     const{ setData} = useGlobalContext()
@@ -14,16 +15,16 @@ export function ServicesTypes() {
 
 useEffect(()=>{
     const getData= async ()=>{
-        const response = await axios.get('https://petbuddy-backend-rnu7.onrender.com/api/doctorData')
+        const response = await axios.get(API.doctorData)
         const details1 = await response.data
         setVeternityData(details1)
-        const response1 = await axios.get('https://petbuddy-backend-rnu7.onrender.com/api/groomingData')
+        const response1 = await axios.get(API.groomingData)
         const details2 = await response1.data
         setGroomingData(details2)
-        const response2 = await axios.get('https://petbuddy-backend-rnu7.onrender.com/api/boardingData')
+        const response2 = await axios.get(API.boardingData)
         const details3 = await response2.data
         setBoardingData(details3)
-        const response3 = await axios.get('https://petbuddy-backend-rnu7.onrender.com/api/trainingData')
+        const response3 = await axios.get(API.trainingData)
         const details4 = response3.data
         setTrainingData(details4)
     }

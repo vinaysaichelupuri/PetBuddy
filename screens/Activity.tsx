@@ -9,6 +9,7 @@ import {
 import { styles } from '../screenStyling/ActivityStyling';
 import { useGlobalContext} from '../context/GlobalContext';
 import axios from 'axios';
+import { API } from '../config/api';
 
 export function Activity({navigation}: {navigation: any}) {
   const {  username, petName} = useGlobalContext()
@@ -24,7 +25,7 @@ export function Activity({navigation}: {navigation: any}) {
   useEffect(() => {
     const fetchRemainderData = async () => {
         const response = await axios.post(
-          'https://petbuddy-backend-rnu7.onrender.com/api/getActivity',
+          API.getActivity,
           {
             username: username,
             petName: petName,

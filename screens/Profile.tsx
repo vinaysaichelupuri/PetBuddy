@@ -6,13 +6,14 @@ import { TProfile } from '../types/profileType';
 import { ProfileHeader } from '../components/ProfileHeader';
 import { styles } from '../screenStyling/ProfileStyling';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API } from '../config/api';
 
 export function Profile({navigation}:{navigation:any}) {
 const{username,setUsername} = useGlobalContext()
 const[profileData,setProfileData] = useState<TProfile>({userPhoto:'',email:'',phoneNumber:'',username:'',password:""})
 useEffect(()=>{
     const getData= async ()=>{
-        const response = await axios.post('https://petbuddy-backend-rnu7.onrender.com/api/getProfile',{
+        const response = await axios.post(API.getProfile,{
             username:username,
           })
           const profileData  = response.data

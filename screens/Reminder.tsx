@@ -11,6 +11,7 @@ import { useGlobalContext} from '../context/GlobalContext';
 import axios from 'axios';
 import { RemainderModal } from '../model/remainderModal';
 import { styles } from '../screenStyling/ReminderStyling';
+import { API } from '../config/api';
 
 export function Reminder({navigation}: {navigation: any}) {
   const { setRemainderModal, username, petName} = useGlobalContext()
@@ -35,7 +36,7 @@ export function Reminder({navigation}: {navigation: any}) {
     const fetchRemainderData = async () => {
       try {
         const response = await axios.post(
-          'https://petbuddy-backend-rnu7.onrender.com/api/getReminder',
+          API.getReminder,
           {
             username: username,
             petName: petName,

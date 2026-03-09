@@ -7,6 +7,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { styles } from '../screenStyling/LoginStyling';
 import { hashPassword } from '../encryption/encryptionFunction';
+import { API } from '../config/api';
 
 export function Login({ navigation }: { navigation: any }) {
   const { username, setUsername, password, setPassword } = useGlobalContext();
@@ -16,7 +17,7 @@ export function Login({ navigation }: { navigation: any }) {
   const handleLogin = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post('https://petbuddy-backend-rnu7.onrender.com/api/login', {
+      const response = await axios.post(API.login, {
         username: username,
         password: encryptedPassword,
       });

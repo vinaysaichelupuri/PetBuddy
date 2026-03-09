@@ -14,6 +14,7 @@ import {Dropdown} from 'react-native-element-dropdown';
 import DatePicker from 'react-native-date-picker';
 import axios from 'axios';
 import { styles } from '../modolStylings/reminderModalStyling';
+import { API } from '../config/api';
 
 export function RemainderModal({ navigation }: { navigation: any }) {
   const { remainderModal, setRemainderModal,username,petName ,date,setDate,startTime,setStartTime,setEndTime ,endTime,name, setName} = useGlobalContext();
@@ -94,7 +95,7 @@ export function RemainderModal({ navigation }: { navigation: any }) {
         const {pressAction } = detail
         if (type === EventType.ACTION_PRESS && pressAction?.id==='yes' ) {
           try {
-            const response = await axios.post('http://localhost:5001/api/addActivity', {
+            const response = await axios.post(API.addActivity, {
                 username,
                 petName,
                 activityName: name,
@@ -108,7 +109,7 @@ export function RemainderModal({ navigation }: { navigation: any }) {
       });
 
       setRemainderModal(false);
-      const response  = await axios.post('http://localhost:5001/api/addReminder',{
+      const response  = await axios.post(API.addReminder,{
         username:username,
         petName:petName,
         type:dropdown,
