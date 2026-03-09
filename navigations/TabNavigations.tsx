@@ -9,9 +9,9 @@ const Tab = createBottomTabNavigator()
  export function TabNavigation(){
     const {username}= useGlobalContext()
     return(
-         <Tab.Navigator initialRouteName="Home"
+         <Tab.Navigator initialRouteName="TabHome"
          >
-        <Tab.Screen name = "Home" component={Home} options={{headerShown:false,tabBarIcon: ({size,focused,color}) => {
+        <Tab.Screen name = "TabHome" component={Home} options={{headerShown:false,tabBarIcon: ({size,focused,color}) => {
                 return (
                   <Image
                     style={{ width: 30, height: 30}}

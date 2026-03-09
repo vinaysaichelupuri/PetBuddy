@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {Controller, useForm} from 'react-hook-form';
 import notifee, { AndroidImportance, EventType, TriggerType } from '@notifee/react-native';
 import {
   Image,
@@ -14,6 +13,8 @@ import {useGlobalContext} from '../context/GlobalContext';
 import {Dropdown} from 'react-native-element-dropdown';
 import DatePicker from 'react-native-date-picker';
 import axios from 'axios';
+import { styles } from '../modolStylings/reminderModalStyling';
+import { API } from '../config/api';
 
 export function RemainderModal({ navigation }: { navigation: any }) {
   const { remainderModal, setRemainderModal,username,petName ,date,setDate,startTime,setStartTime,setEndTime ,endTime,name, setName} = useGlobalContext();
@@ -46,7 +47,6 @@ export function RemainderModal({ navigation }: { navigation: any }) {
     try{
       setCategoriesIOS()
        const scheduleNotification = async () => {
-        console.log("funtion called")
         const permission = await notifee.requestPermission();
         if (!permission) {
           console.error('Notification permission not granted');
@@ -59,8 +59,6 @@ export function RemainderModal({ navigation }: { navigation: any }) {
         });
       
         const timestamp = new Date(endTime).getTime();
-        console.log(new Date(endTime))
-        console.log('Scheduling notification for:', timestamp);
         
       
         await notifee.createTriggerNotification(
@@ -96,16 +94,14 @@ export function RemainderModal({ navigation }: { navigation: any }) {
       notifee.onForegroundEvent(async ({type, detail}) => {
         const {pressAction } = detail
         if (type === EventType.ACTION_PRESS && pressAction?.id==='yes' ) {
-          console.log('Action function hitted')
           try {
-            const response = await axios.post('http://localhost:5001/api/addActivity', {
+            const response = await axios.post(API.addActivity, {
                 username,
                 petName,
                 activityName: name,
                 startTime,
                 endTime,
             });
-            console.log('API response:', response.data);
         } catch (error) {
             console.error('API call error:', error);
         }
@@ -113,7 +109,7 @@ export function RemainderModal({ navigation }: { navigation: any }) {
       });
 
       setRemainderModal(false);
-      const response  = await axios.post('http://localhost:5001/api/addReminder',{
+      const response  = await axios.post(API.addReminder,{
         username:username,
         petName:petName,
         type:dropdown,
@@ -237,49 +233,3 @@ export function RemainderModal({ navigation }: { navigation: any }) {
   );
 }
 
-
-const styles = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContent: {
-    backgroundColor: '#4CAF50',
-    borderRadius: 10,
-    padding: 20,
-    width: '80%',
-    alignSelf: 'center',
-    alignItems: 'center',
-  },
-  crossIcon: {
-    width: 20,
-    height: 20,
-    alignSelf: 'flex-end',
-  },
-  input: {
-    height: 50,
-    borderColor: 'gray',
-    marginBottom: 15,
-    padding: 10,
-    width: '100%',
-    borderRadius: 8,
-    backgroundColor: '#FFFFFF',
-    fontSize: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  addReminderButton: {
-    height: 50,
-    width: '100%',
-    backgroundColor: '#000000',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-  },
-  addReminderButtonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});

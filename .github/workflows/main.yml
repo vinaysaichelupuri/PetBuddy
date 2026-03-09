@@ -19,9 +19,8 @@ jobs:
       - name: Install Java - 17
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: 'zulu'
           java-version: '17'
-          cache: 'gradle'
 
       - name: Install Dependencies
         run: npm install   
@@ -33,9 +32,10 @@ jobs:
       
       - name: Run Tests
         run: npm test
-      
-      - name: Build on Android
-        run: npx react-native build-android
 
       - name: Build on iOS
         run: npx react-native build-ios
+        
+      - name: Build on Android
+        run: npx react-native build-android
+        

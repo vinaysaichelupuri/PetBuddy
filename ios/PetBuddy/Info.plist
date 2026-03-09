@@ -54,5 +54,9 @@
   <string>PetBuddy needs files</string>
   <key>NSPhotoLibraryAddUsageDescription</key>
   <string>PetBuddy needs files</string>
+  <key>LSApplicationQueriesSchemes</key>  
+<array>  
+  <string>telprompt</string>  
+</array>
 </dict>
 </plist>

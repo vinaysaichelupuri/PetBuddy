@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image, StyleSheet, View } from 'react-native'
+import { styles } from '../componentStyling/HeaderStyling'
 
 export function Header() {
   return (
@@ -10,10 +11,5 @@ export function Header() {
 }
 
 
-const styles = StyleSheet.create({
-    headerLogin: {
-      height: 100,
-      width: 450,
-    },
-  });
+
   

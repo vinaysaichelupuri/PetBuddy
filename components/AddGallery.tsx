@@ -5,6 +5,8 @@ import ImageCropPicker from 'react-native-image-crop-picker';
 import RNFS from 'react-native-fs';
 import axios from 'axios';
 import { useGlobalContext } from '../context/GlobalContext';
+import { styles } from '../componentStyling/AddGalleryStyling';
+import { API } from '../config/api';
 
 export function AddGallery({navigation}: {navigation: any}) {
     const {username,petName,setImage} = useGlobalContext()
@@ -26,7 +28,7 @@ export function AddGallery({navigation}: {navigation: any}) {
           const source: string = pickedImage.path;
           const base64Image: string = await RNFS.readFile(source, 'base64');
           const imageData = `data:image/jpeg;base64,${base64Image}`
-          const response = await axios.post('http://localhost:5001/api/addGallery', { 
+          const response = await axios.post(API.addGallery, { 
             username: username,
             petName:petName,
             path:imageData
@@ -40,26 +42,3 @@ export function AddGallery({navigation}: {navigation: any}) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    height: 100,
-    width: '100%',
-    justifyContent:"center",
-    alignItems:"center"
-  },
-  subContainer: {
-    height:40,
-    width:"40%",
-    backgroundColor:"forestgreen",
-     justifyContent:"center",
-    alignItems:"center",
-    borderRadius:20
-  },
-  text: {
-    color:"white",
-    fontSize:20,
-    fontFamily:"bold",
-    fontWeight:"600"
-  },
-});

@@ -6,6 +6,7 @@ import { Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { requestPermissions } from '../permissions/ImagePermission';
 import ImageCropPicker from 'react-native-image-crop-picker';
+import { API } from '../config/api';
 
 jest.mock('axios');
 jest.spyOn(Alert, 'alert');
@@ -109,7 +110,7 @@ describe('Register Component', () => {
 
     fireEvent.press(getByText('Submit'));
 
-    await waitFor(() => expect(axios.post).toHaveBeenCalledWith('http://localhost:5001/api/register', expect.any(Object)));
+    await waitFor(() => expect(axios.post).toHaveBeenCalledWith(API.register, expect.any(Object)));
     expect(mockReplace).toHaveBeenCalledWith('Login');
   });
 
